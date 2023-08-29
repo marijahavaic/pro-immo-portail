@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -45,20 +47,24 @@ class Property
     private ?string $Photo = null;
 
     #[ORM\Column]
-    private ?bool $isRent = null;
+    private ?bool $isRent = false;
 
     #[ORM\Column]
-    private ?bool $isOnSale = null;
+    private ?bool $isOnSale = false;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idProperty')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Favorites $favorites = null;
+    #[ORM\ManyToMany(targetEntity: Favorite::class, mappedBy: 'property')]
+    private Collection $favorite;
+
+    public function __construct()
+    {
+        $this->favorite = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -209,38 +215,53 @@ class Property
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getFavorites(): ?Favorites
+    /**
+     * @return Collection<int, Favorite>
+     */
+    public function getFavorite(): Collection
     {
-        return $this->favorites;
+        return $this->favorite;
     }
 
-    public function setFavorites(?Favorites $favorites): static
+    public function addFavorite(Favorite $favorite): static
     {
-        $this->favorites = $favorites;
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+            $favorite->addProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): static
+    {
+        if ($this->favorite->removeElement($favorite)) {
+            $favorite->removeProperty($this);
+        }
 
         return $this;
     }
