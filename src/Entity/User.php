@@ -35,16 +35,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $lastname = null;
 
-    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Favorites::class)]
-    private Collection $favorites;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Role::class)]
     private Collection $idRole;
 
+    #[ORM\ManyToMany(targetEntity: Favorite::class, mappedBy: 'user')]
+    private Collection $favorite;
+
     public function __construct()
     {
-        $this->favorites = new ArrayCollection();
         $this->idRole = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,36 +142,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Favorites>
-     */
-    public function getFavorites(): Collection
-    {
-        return $this->favorites;
-    }
-
-    public function addFavorite(Favorites $favorite): static
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites->add($favorite);
-            $favorite->setIdUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(Favorites $favorite): static
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getIdUser() === $this) {
-                $favorite->setIdUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Role>
      */
     public function getIdRole(): Collection
@@ -196,6 +166,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($idRole->getUser() === $this) {
                 $idRole->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favorite>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Favorite $favorite): static
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+            $favorite->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): static
+    {
+        if ($this->favorite->removeElement($favorite)) {
+            $favorite->removeUser($this);
         }
 
         return $this;
