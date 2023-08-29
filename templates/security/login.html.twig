@@ -23,9 +23,10 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
+    
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
 </form>
+<a href={{path('app_forgot_password_request')}}>Forgot my password</a>
 {% endblock %}
