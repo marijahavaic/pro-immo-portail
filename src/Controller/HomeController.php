@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(PropertyRepository $properties, Request $request): Response
     {
-        $query = $properties->findAll();
+        $properties = $properties->findAll();
         return $this->render('home/index.html.twig', [
             'properties' => $properties,
         ]);
