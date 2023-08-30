@@ -7,17 +7,31 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <h1 class="text-center">Créer un compte</h1>
 
+<div class="d-flex flex-column w-50 m-auto gap-2">
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(registrationForm.lastname) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de passe'
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
+        <form action="">
+        <input class="me-2" type="checkbox">Mémoriser mon identifiant et mon mot de passe lors de mes prochaines visites sur ce site</form>
         {# <button type="submit" class="btn">Register</button> #}
     {{ form_end(registrationForm) }}
+</div>
+
+
+   <hr class="w-50 m-auto">
+
+<div class="d-flex flex-column w-50 m-auto justify-content-center align-items-center gap-2 mt-2">
+<p>Déjà inscrit ? </p>
+            <a href={{ path('app_login') }}><button class="btn btn-primary">Connectez-vous</button></a>
+    </div>
 {% endblock %}

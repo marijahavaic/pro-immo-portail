@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,8 +21,36 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('firstname', TextType::class, [
+            'label' => 'Prénom',
+            'attr' => [
+                'placeholder' => 'Entrez votre prénom',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Entrez votre prénom',
+                ]),
+            ],
+            'attr' => [
+                'class' => 'mb-3 form-control'
+            ]
+        ])
+        ->add('lastname', TextType::class, [
+            'label' => 'Nom',
+            'attr' => [
+                'placeholder' => 'Entrez votre nom',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Entrez votre nom',
+                ]),
+            ],
+            'attr' => [
+                'class' => 'mb-3 form-control'
+            ]
+        ])
         ->add('email', EmailType::class, [
-            'label' => 'Email',
+            'label' => 'E-mail',
             'attr' => [
                 'placeholder' => 'Entrez votre adresse email',
             ],
@@ -65,7 +94,7 @@ class RegistrationFormType extends AbstractType
             'attr' => ['autocomplete' => 'new-password'],
             'constraints' => [
                 new NotBlank([
-                    'message' => 'Please enter a password',
+                    'message' => 'Merci d\'entrer votre mot de passe',
                 ]),
                 new Length([
                     'min' => 8,
@@ -85,7 +114,7 @@ class RegistrationFormType extends AbstractType
         ->add('button', SubmitType::class, [
             'label' => 'Créer mon compte',
             'attr' => [
-                'class' => 'mb-3 btn btn-primary'
+                'class' => 'd-flex flex-column m-auto mb-3 btn btn-primary'
             ]
         ])
         ;
