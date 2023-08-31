@@ -24,12 +24,12 @@ class FavoriteRepository extends ServiceEntityRepository
     //    /**
     //     * @return Favorite[] Returns an array of Favorite objects
     //     */
-    //    public function findByExampleField($value): array
+    //    public function findByExampleField($user_id): array
     //    {
     //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('f.id', 'ASC')
+    //            ->andWhere('f.user_id = :user_id')
+    //            ->setParameter('user_id', $user_id)
+    //            ->orderBy('f.user_id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
