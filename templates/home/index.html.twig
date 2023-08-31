@@ -1,9 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{# TODO creer form #}
-
-
-
-    
+    {% for property in properties %}
+    <div>
+    <h1>{{property.title}}</h1>
+    <p>{{property.description}}</p>
+    {{property.type}}
+    {{property.price}}
+    {{property.surface}}
+    {{property.address}}
+    {{property.town}}
+    {# !Les commentaires marches pas bien parce que elles sont pas de type text #}
+    {# {{property.postal_code}} #}
+    {{property.country}}
+    {# {{property.is_rent}} #}
+    {# {{property.is_on_sale}} #}
+    {# {{property.createdAt}}
+    {{property.updatedAt}} #}
+    </div>
+    {% endfor %}
+    <div class="d-flex justify-content-center mt-3">
+                    {{ knp_pagination_render(properties) }}
+                    </nav>
+                </div> 
 {% endblock %}
