@@ -39,11 +39,11 @@ security:
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
-        - { path: ^/home, roles: PUBLIC_ACCESS }
-        - { path: ^/favorites, roles: USER }
-        - { path: ^/newproperty, roles: PRO }
+        - { path: ^/, roles: PUBLIC_ACCESS }
+        - { path: ^/favorites, roles: ROLE_USER }
+        - { path: ^/newproperty, roles: ROLE_PRO }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/, roles: ROLE_USER }
+        # - { path: ^/, roles: ROLE_USER }
 
 when@test:
     security:
