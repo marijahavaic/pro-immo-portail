@@ -2,7 +2,7 @@
 
 {% block body %}
 
-	<img class="w-50 h-25 d-flex m-auto" src={{asset("images/banniere.jpg")}} alt="">
+<img class="w-50 h-25 d-flex m-auto" src={{asset("images/banniere.jpg")}} alt="">
 
 	<div class="container row m-auto">
 		{% for property in properties %}
@@ -36,11 +36,8 @@
                 </div>
 			</div>
 
-
 		{% endfor %}
-
-	</div>
-	<div class="d-flex justify-content-center mt-3">
-		{{ knp_pagination_render(properties) }}
-	</nav>
-</div>{% endblock %}
+</div>
+<div class="d-flex justify-content-center mt-3">
+	{{ knp_pagination_render(properties) }}
+</nav></div>{% endblock %}
