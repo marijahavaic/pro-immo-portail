@@ -48,7 +48,10 @@
             </li> #}
           </ul>
 
-          <div class=" text-end">
+          <div class=" text-end">]
+          {% if is_granted('IS') %}
+            
+          {% endif %}
             <button type="button" class="btn btn-outline-primary me-2">
               Login
             </button>
