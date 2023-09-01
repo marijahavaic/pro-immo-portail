@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(PropertyRepository $properties, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $properties->findAll();

@@ -49,10 +49,17 @@
           </ul>
 
           <div class=" text-end">
-            <button type="button" class="btn btn-outline-primary me-2">
-              Login
-            </button>
-            <button type="button" class="btn btn-primary">Register</button>
+            <ul class="nav nav-pills">
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          
+            <li class="nav-item"><a href={{ path('app_logout')}} class="nav-link active">Déconnexion</a></li>
+          
+        
+          {% else %}
+              <li class="nav-item"><a href={{ path('app_logout')}} class="nav-link active px-2 mx-3">Connexion</a></li>
+                <li class="nav-item"><a href={{ path('app_register')}} class="nav-link active px-2">Inscription</a></li>
+          {% endif %}
+          </ul>
           </div>
         </div>
       </div>
