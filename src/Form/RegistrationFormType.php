@@ -24,35 +24,29 @@ class RegistrationFormType extends AbstractType
         ->add('firstname', TextType::class, [
             'label' => 'Prénom',
             'attr' => [
-                'placeholder' => 'Entrez votre prénom',
+                'placeholder' => 'Entrez votre prénom', 'class' => 'mb-3 form-control'
             ],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Entrez votre prénom',
                 ]),
             ],
-            'attr' => [
-                'class' => 'mb-3 form-control'
-            ]
         ])
         ->add('lastname', TextType::class, [
             'label' => 'Nom',
             'attr' => [
-                'placeholder' => 'Entrez votre nom',
+                'placeholder' => 'Entrez votre nom','class' => 'mb-3 form-control'
             ],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Entrez votre nom',
                 ]),
             ],
-            'attr' => [
-                'class' => 'mb-3 form-control'
-            ]
         ])
         ->add('email', EmailType::class, [
             'label' => 'E-mail',
             'attr' => [
-                'placeholder' => 'Entrez votre adresse email',
+                'placeholder' => 'Entrez votre adresse email', 'class' => 'mb-3 form-control'
             ],
             'constraints' => [
                 new NotBlank([
@@ -69,9 +63,6 @@ class RegistrationFormType extends AbstractType
                     'message' => 'Veuillez entrer une adresse email valide',
                 ]),
             ],
-            'attr' => [
-                'class' => 'mb-3 form-control'
-            ]
         ])
         ->add('agreeTerms', CheckboxType::class, [
             'mapped' => false,
@@ -91,7 +82,7 @@ class RegistrationFormType extends AbstractType
             // this is read and encoded in the controller
             'mapped' => false,
             'label' => 'Mot de passe',
-            'attr' => ['autocomplete' => 'new-password'],
+            'attr' => ['autocomplete' => 'new-password',  'placeholder' => 'Entrez votre mot de passe','class' => 'mb-3 form-control'],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Merci d\'entrer votre mot de passe',
@@ -107,9 +98,6 @@ class RegistrationFormType extends AbstractType
                     message: 'Votre mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
                 )
             ],
-            'attr' => [
-                'class' => 'mb-3 form-control'
-            ]
         ])
         ->add('button', SubmitType::class, [
             'label' => 'Créer mon compte',
