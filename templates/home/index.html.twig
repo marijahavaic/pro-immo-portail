@@ -1,26 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% for property in properties %}
-    <div>
-    <h1>{{property.title}}</h1>
-    <p>{{property.description}}</p>
-    {{property.type}}
-    {{property.price}}
-    {{property.surface}}
-    {{property.address}}
-    {{property.town}}
-    {# !Les commentaires marches pas bien parce que elles sont pas de type text #}
-    {# {{property.postal_code}} #}
-    {{property.country}}
-    {# {{property.is_rent}} #}
-    {# {{property.is_on_sale}} #}
-    {# {{property.createdAt}}
-    {{property.updatedAt}} #}
-    </div>
-    {% endfor %}
-    <div class="d-flex justify-content-center mt-3">
-                    {{ knp_pagination_render(properties) }}
-                    </nav>
-                </div> 
-{% endblock %}
+
+	<img class="w-50 h-25 d-flex m-auto" src={{asset("images/banniere.jpg")}} alt="">
+
+	<div class="container row m-auto">
+		{% for property in properties %}
+			<div class="col-sm-6 pt-3">
+				<div class="d-flex gap-1 justify-content-center align-items-center">
+					
+						<img class="w-auto" src={{asset("images/facade.jpg")}} alt="">
+					
+					<div class="">
+						<h1>{{property.title}}</h1>
+						{# <h3>{{property.type}}</h3> #}
+						<p>{{property.description}}</p>
+						<p>{{property.price}}
+							€</p>
+						<p>{{property.surface}}
+							m²</p>
+						<p>{{property.town}}</p>
+						{# {{property.address}} #}
+
+					{# !Les commentaires marches pas bien parce que elles sont pas de type text #}
+						{# {{property.postal_code}} #}
+						{# {{property.country}} #}
+						{# {{property.is_rent}} #}
+						{# {{property.is_on_sale}} #}
+						{# {{property.createdAt}}
+						{{property.updatedAt}} #}
+					</div>
+				</div>
+                <div class="text-center pt-3">
+				<button class="btn btn-primary ">Voir</button>
+                </div>
+			</div>
+
+
+		{% endfor %}
+
+	</div>
+	<div class="d-flex justify-content-center mt-3">
+		{{ knp_pagination_render(properties) }}
+	</nav>
+</div>{% endblock %}
