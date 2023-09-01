@@ -44,7 +44,8 @@ class AppFixtures extends Fixture
                 ->setIsRent($faker->boolean())
                 ->setIsOnSale($faker->boolean())
                 ->setCreatedAt($faker->dateTimeBetween('-7 months'))
-                ->setUpdatedAt($faker->dateTimeBetween('-7 months'));
+                ->setUpdatedAt($faker->dateTimeBetween('-7 months'))
+                ->setPhoto($faker->imageUrl(300, 300, 'animals', true));
 
                 $favorite = new Favorite();
                 $favorite->addUser($user)
