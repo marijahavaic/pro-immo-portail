@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavoriteController!{% endblock %}
+
+{% block body %}
+
+
+{% for favorite in favorites %}
+    {% for property in favorite.property %}
+        <div class="col-sm-6 pt-3">
+            <div class="d-flex gap-1 justify-content-center align-items-center">
+                
+                    <img class="w-auto" src={{asset("images/facade.jpg")}} alt="">
+                
+                <div class="">
+                    <h1>{{property.title}}</h1>
+                    <p>{{property.description}}</p>
+                    <p>{{property.price}}
+                        €</p>
+                    <p>{{property.surface}}
+                        m²</p>
+                    <p>{{property.town}}</p>
+                </div>
+            </div>
+            <div class="text-center pt-3">
+            <a href={{ path('app_property_show', {'id': property.id}) }}><button class="btn btn-primary ">Voir</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
