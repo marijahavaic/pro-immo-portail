@@ -41,6 +41,7 @@ class AppFixtures extends Fixture
                 ->setTown($faker->city())
                 ->setPostalCode($faker->numberBetween(01000, 95000))
                 ->setCountry($faker->country())
+                ->setPhoto($faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'))
                 ->setIsRent($faker->boolean())
                 ->setIsOnSale($faker->boolean())
                 ->setCreatedAt($faker->dateTimeBetween('-7 months'))
