@@ -68,7 +68,7 @@ class Property
 
     public function __toString(): string
     {
-        return $this->favorite;
+        return $this->getTitle() ?: 'Untitled Property';
     }
 
     public function getId(): ?int
