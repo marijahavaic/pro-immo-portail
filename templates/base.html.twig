@@ -79,10 +79,10 @@
       </a>
 
       <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Accueil</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Paramétrer mes cookies</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Conditions Générales d'Utilisation</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Politique Générale de Protection des Données</a></li>
+        <li class="nav-item"><a href={{ path('app_home')}} class="nav-link px-2 text-body-secondary">Accueil</a></li>
+        <li class="nav-item"><a href={{ path('app_cookies')}} class="nav-link px-2 text-body-secondary">Cookies</a></li>
+        <li class="nav-item"><a href={{ path('app_cond_utilisation')}} class="nav-link px-2 text-body-secondary">Conditions Générales d'Utilisation</a></li>
+        <li class="nav-item"><a href={{ path('app_donnees')}} class="nav-link px-2 text-body-secondary">Politique Générale de Protection des Données</a></li>
         {# TODO on peut le mettre s'il y a du temps #}
         {# <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Fonctionnement de notre site</a></li> #}
       </ul>
