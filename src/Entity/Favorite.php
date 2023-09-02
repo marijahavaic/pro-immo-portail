@@ -27,6 +27,11 @@ class Favorite
         $this->property = new ArrayCollection();
     }
 
+    // public function __toString()
+    // {
+    //     return $this->property;
+    // }
+
 
     public function getId(): ?int
     {
@@ -64,6 +69,8 @@ class Favorite
     {
         return $this->property;
     }
+
+    
 
     public function addProperty(Property $property): static
     {
