@@ -4,7 +4,8 @@
 
 {% block body %}
 
-
+<h1>Mes favoris :</h1>
+<div class="container row m-auto">
 {% for favorite in favorites %}
     {% for property in favorite.property %}
         <div class="col-sm-6 pt-3">
@@ -28,4 +29,8 @@
         </div>
         {% endfor %}
     {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+	{{ knp_pagination_render(favorite) }}
+</div>
 {% endblock %}
