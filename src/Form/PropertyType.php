@@ -5,19 +5,18 @@ namespace App\Form;
 use App\Entity\Property;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PropertyType extends AbstractType
@@ -57,34 +56,45 @@ class PropertyType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Type', ChoiceType::class,[
+            ->add('Type', ChoiceType::class, [
                 'required' => true,
                 'choices' => [
                     'Choisir...' => null,
                     'Maison' => 'maison',
                     'Appartement' => 'appartement',
                     'Château' => 'castle'
-
                 ],
-                'attr' => [ 'placeholder' => 'Entrez prix', 'class' => 'mb-3 form-control'
-            ],
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Merci de choisir un type valide.',
+                    ]),
+                ],
+                'attr' => [
+                    'placeholder' => 'Sélectionnez le type', // Update the placeholder text
+                    'class' => 'mb-3 form-control'
+                ],
             ])
             ->add('Price', MoneyType::class, [
                 'required' => true,
                 'divisor' => 1,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Merci d\'écrire valide prix',
+                        'message' => 'Veuillez entrer un montant d’argent valide.',
                     ]),
                 ],
                 'label' => 'Prix',
-                'attr' => ['class' => 'mb-3 form-control', ]
+                'attr' => ['class' => 'form-control', ]
             ])
             ->add('Surface', NumberType::class, [
                 'required' => true,
                 'label' => 'Surface',
                 'attr' => [
                     'placeholder' => 'Entrez surface', 'class' => 'mb-3 form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un surface valide.',
+                    ]),
                 ],
             ])
             ->add('address', TextType::class, [
@@ -117,6 +127,11 @@ class PropertyType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Entrez code postal', 'class' => 'mb-3 form-control'
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un code postal valide.',
+                    ]),
+                ],
             ])
             ->add('Country',CountryType::class, [
                 'required' => true,
@@ -130,6 +145,10 @@ class PropertyType extends AbstractType
                     'mapped' => false,
                     'required' => false,
                 ))
+            ->add('isRent', CheckboxType::class, [
+            'label' => 'Vous souhaitez annoncer votre propriété au loyer ?',
+            'required' => false,
+        ])
             // ->add('isRent', CheckboxType::class, [
             //         'label' => 'Au loyer',
             //         'attr' => [
@@ -142,32 +161,6 @@ class PropertyType extends AbstractType
             //         'class' => 'form-check-input'
             //     ],
             //     ])
-            ->add('createdAt', DateType::class, [
-                'label' => 'Créée',
-                'placeholder' => [
-                'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                ],
-                'attr' => [
-                    'class' => 'mb-3'
-                ]
-            ])
-            // TODO montre pour edit
-            // ->add('updatedAt', DateType::class, [
-            //     'label' => 'Modifié',
-            //     'placeholder' => [
-            //     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-            //     ],
-            //     'attr' => [
-            //         'class' => 'mb-3'
-            //     ]
-            // ])
-            ->add('button', SubmitType::class, [
-                'label' => 'Créer ma annonce',
-                'attr' => [
-                    'class' => 'mb-3 btn btn-primary'
-                ]
-            ])
-            // ->add('favorite')
         ;
     }
 
