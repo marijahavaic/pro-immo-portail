@@ -40,7 +40,15 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+        if ($form->get('isPro')->getData()) {
+            $user->setRoles(['ROLE_USER', 'ROLE_PRO']);
+        } else {
             $user->setRoles(['ROLE_USER']);
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
             $entityManager->persist($user);
             $entityManager->flush();
 

@@ -177,6 +177,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPro;
+
+    public function getIsPro(): ?bool
+    {
+        return $this->isPro;
+    }
+
+    public function setIsPro(bool $isPro): self
+    {
+        $this->isPro = $isPro;
+
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Favorite>
      */
     public function getFavorite(): Collection
