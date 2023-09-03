@@ -1,61 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Property index{% endblock %}
+{% block title %}Property index
+{% endblock %}
 
 {% block body %}
-    <h1>Property index</h1>
+	<h1>Property index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Surface</th>
-                <th>Address</th>
-                <th>Town</th>
-                <th>PostalCode</th>
-                <th>Country</th>
-                <th>Photo</th>
-                <th>IsRent</th>
-                <th>IsOnSale</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for property in properties %}
-            <tr>
-                <td>{{ property.id }}</td>
-                <td>{{ property.Title }}</td>
-                <td>{{ property.Description }}</td>
-                <td>{{ property.Type }}</td>
-                <td>{{ property.Price }}</td>
-                <td>{{ property.Surface }}</td>
-                <td>{{ property.address }}</td>
-                <td>{{ property.Town }}</td>
-                <td>{{ property.PostalCode }}</td>
-                <td>{{ property.Country }}</td>
-                <td>{{ property.Photo }}</td>
-                <td>{{ property.isRent ? 'Yes' : 'No' }}</td>
-                <td>{{ property.isOnSale ? 'Yes' : 'No' }}</td>
-                <td>{{ property.createdAt ? property.createdAt|date('Y-m-d') : '' }}</td>
-                <td>{{ property.updatedAt ? property.updatedAt|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_property_show', {'id': property.id}) }}">show</a>
-                    <a href="{{ path('app_property_edit', {'id': property.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="16">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Price</th>
+				<th>Surface</th>
+				<th>Address</th>
+				<th>Town</th>
+				<th>PostalCode</th>
+				<th>Country</th>
+				<th>Photo</th>
+				<th>IsRent</th>
+				<th>IsOnSale</th>
+				<th>CreatedAt</th>
+				<th>UpdatedAt</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for property in properties %}
+				<tr>
+					<td>{{ property.id }}</td>
+					<td>{{ property.Title }}</td>
+					<td>{{ property.Description }}</td>
+					<td>{{ property.Type }}</td>
+					<td>{{ property.Price }}</td>
+					<td>{{ property.Surface }}</td>
+					<td>{{ property.address }}</td>
+					<td>{{ property.Town }}</td>
+					<td>{{ property.PostalCode }}</td>
+					<td>{{ property.Country }}</td>
+					<td>{{ property.Photo }}</td>
+					<td>{{ property.isRent ? 'Yes' : 'No' }}</td>
+					<td>{{ property.isOnSale ? 'Yes' : 'No' }}</td>
+					<td>{{ property.createdAt ? property.createdAt|date('Y-m-d') : '' }}</td>
+					<td>{{ property.updatedAt ? property.updatedAt|date('Y-m-d') : '' }}</td>
+					<td>
+						<a href="{{ path('app_property_show', {'id': property.id}) }}">show</a>
+						<a href="{{ path('app_property_edit', {'id': property.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="16">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_property_new') }}">Create new</a>
+	<a href="{{ path('app_property_new') }}">Create new</a>
 {% endblock %}

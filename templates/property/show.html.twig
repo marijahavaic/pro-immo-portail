@@ -1,40 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Property{% endblock %}
+{% block title %}Property
+{% endblock %}
 
 {% block body %}
 
 
+	<header class="d-flex align-items-center justify-content-center pb-3 mb-5 border-bottom">
+		<a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+			<svg class="bi me-2" width="40" height="32">
+				<use xlink:href="#bootstrap"></use>
+			</svg>
+			<h2>{{ property.Title }}</h2>
+		</a>
+	</header>
+	{# TODO photo gallery #}
+	<div{{property.Town}}({{property.PostalCode}})</h3 <div class="container row m-auto"> <img class="w-auto pb-3" src={{asset("images/facade.jpg")}} alt=""> <div class="d-flex flex-column"> <h3>>
+		<p>Prix:
+			<span>{{ property.Price }}€</span>
+		</p>
+		<p>Surface:
+			<span>{{ property.Surface }}m²</span>
+		</p>
+		<hr class="col-3 col-md-2 mb-5">
+		<p>Type de propriété:
+			{{ property.Type }}</p>
+		<hr class="col-3 col-md-2 mb-5">
+		<p class="fs-5 col-md-8">Description du bien :
+			<br>{{ property.Description }}</p>
 
-<header class="d-flex align-items-center justify-content-center pb-3 mb-5 border-bottom">
-    <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-    <h2>{{ property.Title }}</h2>
-    </a>
-</header>
-{# TODO photo gallery #}
-<div <div class="container row m-auto">
-<img class="w-auto pb-3" src={{asset("images/facade.jpg")}} alt="">
-<img class="w-auto" src={{property.photo}} alt="">
+		<hr class="col-3 col-md-2 mb-5">
+	{# TODO Map #}
+		{# TODO Contact form #}
+	</div>
 
-<div class="d-flex flex-column">
-    <h3>{{ property.Town }}({{ property.PostalCode }})</h3>
-    <p>Prix: <span>{{ property.Price }}€</span></p>
-    <p>Surface: <span>{{ property.Surface }}m²</span></p>
-    <hr class="col-3 col-md-2 mb-5">
-    <p>Type de propriété: {{ property.Type }}</p>
-    <hr class="col-3 col-md-2 mb-5">
-    <p class="fs-5 col-md-8">Description du bien : <br>{{ property.Description }}</p>
+	<a href="{{ path('app_home') }}">
+		<button class="btn btn-primary mb-2">Retour à l'accueil</button>
+	</a>
 
-    <hr class="col-3 col-md-2 mb-5">
-    {# TODO Map #}
-    {# TODO Contact form #}
-</div>
+	<a href="{{ path('app_property_edit', {'id': property.id}) }}">
+		<button class="btn btn-primary">Editer mon annonce</button>
+	</a>
 
-    <a href="{{ path('app_home') }}"><button class="btn btn-primary mb-2">Retour à l'accueil</button></a>
-
-    <a href="{{ path('app_property_edit', {'id': property.id}) }}"><button class="btn btn-primary">Editer mon annonce</button></a>
-
-    {# {{ include('property/_delete_form.html.twig') }} #}
-    </div>
-{% endblock %}
+	{# {{ include('property/_delete_form.html.twig') }} #}
+</div>{% endblock %}

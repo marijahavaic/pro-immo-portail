@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pro Immo Portail | Créer une nouvelle annonce{% endblock %}
+{% block title %}Pro Immo Portail | Créer une nouvelle annonce
+{% endblock %}
 
-{% block body %}   
-<div class="container row m-auto">
-    <h1>Créer une nouvelle annonce</h1>
-    {{ include('property/_form.html.twig') }}
-</div>
+{% block body %}
+	<div class="container row m-auto">
+		<h1>Créer une nouvelle annonce</h1>
+		{{ include('property/_form.html.twig') }}
+	</div>
 
-{# TODO Admin #}
-{# <a href="{{ path('app_property_index') }}">back to list</a> #}
+	{# TODO Admin #}
+	{# <a href="{{ path('app_property_index') }}">back to list</a> #}
 {% endblock %}
