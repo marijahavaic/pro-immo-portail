@@ -74,7 +74,6 @@ class RegistrationFormType extends AbstractType
             ],
             'attr' => [
                 'class' => 'mb-3 mx-3 form-check-input',
-                'checked' => 'checked'
             ]
         ])
         ->add('plainPassword', PasswordType::class, [
@@ -98,12 +97,6 @@ class RegistrationFormType extends AbstractType
                     message: 'Votre mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
                 )
             ],
-        ])
-        ->add('button', SubmitType::class, [
-            'label' => 'Créer mon compte',
-            'attr' => [
-                'class' => 'd-flex flex-column m-auto mb-3 btn btn-primary'
-            ]
         ])
         ;
     }
