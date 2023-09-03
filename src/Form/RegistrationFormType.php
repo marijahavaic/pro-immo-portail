@@ -64,6 +64,10 @@ class RegistrationFormType extends AbstractType
                 ]),
             ],
         ])
+        ->add('isPro', CheckboxType::class, [
+            'label' => 'Vous souhaitez annoncer votre propriété ?',
+            'required' => false,
+        ])
         ->add('agreeTerms', CheckboxType::class, [
             'mapped' => false,
             'label' => 'J\'accepte les conditions d\'utilisation',
