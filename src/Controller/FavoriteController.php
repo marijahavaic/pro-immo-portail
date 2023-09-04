@@ -27,6 +27,7 @@ class FavoriteController extends AbstractController
         return $this->render('favorite/index.html.twig', [
             'favorites' => $favoriteProperties,
             'favorite' => $pagination,
+            'user' => $user
             ]);
     }
 }

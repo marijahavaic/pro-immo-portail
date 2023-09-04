@@ -15,6 +15,7 @@ class HomeController extends AbstractController
     public function index(PropertyRepository $properties, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $properties->findAll();
+        $user = $this->getUser();
 
         $pagination = $paginator->paginate(
             $query, // Requête contenant les données à paginer
@@ -23,7 +24,8 @@ class HomeController extends AbstractController
         );
 
         return $this->render('home/index.html.twig', [
-            'properties' => $pagination
+            'properties' => $pagination,
+            'user' => $user
         ]);
     }
     }

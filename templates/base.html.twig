@@ -18,36 +18,49 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 
-					<div class="navbar-collapse collapse" id="navbarsExample03">
+					<div class="navbar-collapse collapse me-auto justify-content-end" id="navbarsExample03">
 
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<div class="dropdown text-end">
-								<span class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-									Vous êtes connecté en tant que :
-								</span>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href={{ path('app_favorite')}} class="nav-link active">Mes favoris</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href={{ path('app_reset_password')}} class="nav-link active">Changer mon mot de passe</a>
-									</li>
-									<li class="nav-item">
-										<a class="dropdown-item" href={{ path('app_logout')}} class="nav-link active">Déconnexion</a>
-									</li>
-								</div>
-							{% else %}
-								<div class="text-end d-flex">
-									<ul class="nav nav-pills">
-										<li class="nav-item">
-											<a href={{ path('app_login')}} class="nav-link active px-2 mx-3">Connexion</a>
+								<div class="mx-3">
+									<p>Vous êtes connecté.e en tant que:</p>
+									<strong class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{app.user.firstName}}</strong>
+
+									<ul class="dropdown-menu me-auto">
+										<li>
+											<a class="dropdown-item" href={{ path('app_favorite')}} class="nav-link active">Mes favoris</a>
+										</li>
+										{% if is_granted('ROLE_ADMIN') %}
+											<li>
+												<a class="dropdown-item" href={{ path('admin')}} class="nav-link active">Dashboard</a>
+											</li>
+										{% endif %}
+										{% if is_granted('ROLE_PRO') %}
+											<li>
+												<a class="dropdown-item" href={{ path('app_property_new')}} class="nav-link active">Déposer une nouvelle annonce</a>
+											</li>
+										{% endif %}
+										<li>
+											<a class="dropdown-item" href={{ path('app_reset_password')}} class="nav-link active">Changer mon mot de passe</a>
 										</li>
 										<li class="nav-item">
-											<a href={{ path('app_register')}} class="nav-link active px-2">Inscription</a>
+											<a class="dropdown-item" href={{ path('app_logout')}} class="nav-link active">Déconnexion</a>
 										</li>
-									</ul>
-								</div>
-							{% endif %}
+									</div>
+								{% else %}
+									<div class="text-end ">
+										<ul class="nav nav-pills me-auto">
+											<li class="nav-item">
+												<a href={{ path('app_login')}} class="nav-link active px-2 mx-3">Connexion</a>
+											</li>
+											<li class="nav-item">
+												<a href={{ path('app_register')}} class="nav-link active px-2">Inscription</a>
+											</li>
+										</ul>
+									</div>
+								{% endif %}
+							</div>
+
 						</div>
 					</div>
 				</nav>
@@ -85,3 +98,4 @@
 			</body>
 		</body>
 	</html>
+</body></html>
