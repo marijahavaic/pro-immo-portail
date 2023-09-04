@@ -76,7 +76,7 @@ class PropertyType extends AbstractType
             ])
             ->add('Price', MoneyType::class, [
                 'required' => true,
-                'divisor' => 1,
+                'divisor' => 100,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un montant valide.',
@@ -149,18 +149,6 @@ class PropertyType extends AbstractType
             'label' => 'Vous souhaitez mettre votre bien en location ?',
             'required' => false,
         ])
-            // ->add('isRent', CheckboxType::class, [
-            //         'label' => 'Au loyer',
-            //         'attr' => [
-            //         'class' => 'form-check-input'
-            //     ],
-            //     ])
-            // ->add('isOnSale', CheckboxType::class, [
-            //         'label' => 'En vent',
-            //         'attr' => [
-            //         'class' => 'form-check-input'
-            //     ],
-            //     ])
         ;
     }
 
