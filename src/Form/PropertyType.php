@@ -28,31 +28,31 @@ class PropertyType extends AbstractType
                 'required' => true,
                 'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'Entrez titre', 'class' => 'mb-3 form-control'
+                    'placeholder' => 'Entrez un titre', 'class' => 'mb-3 form-control'
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez votre prénom',
+                        'message' => 'Entrez un titre',
                     ]),
                 ],
         ])
             ->add('Description', TextareaType::class, [
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Entrez description',
+                    'placeholder' => 'Entrez une description',
                     'rows' => 10,
                     'class' => 'mb-3 form-control'
                 ],
                 'label' => 'Rédigez votre message',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Merci d\'écrire un message',
+                        'message' => 'Merci d\'écrire une description',
                     ]),
                     new Length([
                         'min' => 100,
-                        'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
+                        'minMessage' => 'La description doit contenir au moins {{ limit }} caractères',
                         'max' => 2000,
-                        'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
+                        'maxMessage' => 'La description doit contenir au maximum {{ limit }} caractères',
                     ]),
                 ],
             ])
@@ -60,26 +60,26 @@ class PropertyType extends AbstractType
                 'required' => true,
                 'choices' => [
                     'Choisir...' => null,
-                    'Maison' => 'maison',
-                    'Appartement' => 'appartement',
+                    'Maison' => 'house',
+                    'Appartement' => 'appartment',
                     'Château' => 'castle'
                 ],
                 'constraints' => [
                     new NotNull([
-                        'message' => 'Merci de choisir un type valide.',
+                        'message' => 'Merci de choisir le type de bien immobilier.',
                     ]),
                 ],
                 'attr' => [
-                    'placeholder' => 'Sélectionnez le type', // Update the placeholder text
+                    'placeholder' => 'Sélectionnez le type de bien immobilier', // Update the placeholder text
                     'class' => 'mb-3 form-control'
                 ],
             ])
             ->add('Price', MoneyType::class, [
                 'required' => true,
-                'divisor' => 1,
+                'divisor' => 100,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un montant d’argent valide.',
+                        'message' => 'Veuillez entrer un montant valide.',
                     ]),
                 ],
                 'label' => 'Prix',
@@ -89,23 +89,23 @@ class PropertyType extends AbstractType
                 'required' => true,
                 'label' => 'Surface',
                 'attr' => [
-                    'placeholder' => 'Entrez surface', 'class' => 'mb-3 form-control'
+                    'placeholder' => 'Entrez une surface', 'class' => 'mb-3 form-control'
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un surface valide.',
+                        'message' => 'Veuillez entrer une surface valide.',
                     ]),
                 ],
             ])
             ->add('address', TextType::class, [
                 'required' => true,
-                'label' => 'Address',
+                'label' => 'Addresse',
                 'attr' => [
-                    'placeholder' => 'Entrez address', 'class' => 'mb-3 form-control'
+                    'placeholder' => 'Entrez une adresse', 'class' => 'mb-3 form-control'
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez address',
+                        'message' => 'Veuillez entrer une adresse',
                     ]),
                 ],
         ])
@@ -117,7 +117,7 @@ class PropertyType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez ville',
+                        'message' => 'Veuillez entrer une ville',
                     ]),
                 ],
         ])
@@ -125,7 +125,7 @@ class PropertyType extends AbstractType
                 'required' => true,
                 'label' => 'Code postal',
                 'attr' => [
-                    'placeholder' => 'Entrez code postal', 'class' => 'mb-3 form-control'
+                    'placeholder' => 'Entrez un code postal', 'class' => 'mb-3 form-control'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -146,21 +146,9 @@ class PropertyType extends AbstractType
                     'required' => false,
                 ))
             ->add('isRent', CheckboxType::class, [
-            'label' => 'Vous souhaitez annoncer votre propriété au loyer ?',
+            'label' => 'Vous souhaitez mettre votre bien en location ?',
             'required' => false,
         ])
-            // ->add('isRent', CheckboxType::class, [
-            //         'label' => 'Au loyer',
-            //         'attr' => [
-            //         'class' => 'form-check-input'
-            //     ],
-            //     ])
-            // ->add('isOnSale', CheckboxType::class, [
-            //         'label' => 'En vent',
-            //         'attr' => [
-            //         'class' => 'form-check-input'
-            //     ],
-            //     ])
         ;
     }
 
