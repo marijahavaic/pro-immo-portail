@@ -14,7 +14,6 @@
 			<h2>{{ property.Title }}</h2>
 		</a>
 	</header>
-	{# TODO photo gallery #}
 	<div{{property.Town}}({{property.PostalCode}})</h3 <div class="container row m-auto"> <img class="w-auto pb-3" src={{asset("images/facade.jpg")}} alt=""> <div class="d-flex flex-column"> <h3>>
 		<p>Prix:
 			<span>{{ property.Price }}€</span>
@@ -43,4 +42,5 @@
 	</a>
 
 	{# {{ include('property/_delete_form.html.twig') }} #}
-</div>{% endblock %}
+</div>
+{% endblock %}

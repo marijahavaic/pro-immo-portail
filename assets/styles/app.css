@@ -1,0 +1,7 @@
+.hero {
+  height: 40rem;
+}
+
+img {
+  object-fit: cover;
+}
