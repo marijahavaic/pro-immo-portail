@@ -26,67 +26,71 @@ class PropertyController extends AbstractController
     }
 
     #[Route('/new', name: 'app_property_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $property = new Property();
-
+        
         $property->setCreatedAt(new DateTime());
 
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 1 - Récupérer l'image (dans une variable avec request)
-            $photo = $form->get('photo')->getData();
+            $photo = $form->get('Photo')->getData();
 
-            // Si une image a été uploadée
             if ($photo) {
 
-                // 2 - Modifier le nom de l'image (nom unique)
-                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+               // 2 - Modifier le nom de l'image (nom unique)
+              $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+              // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent sans espace)
+              $safeFilename = $slugger->slug($originalFilename);
 
-                // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent, sans espace, etc.)
-                $safeFilename = $slugger->slug($originalFilename);
+              //Reconstruit le nom de l'image avec un identifiant unique et son extension
+              $newFilename = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
 
-                // Reconstruit le nom de l'image avec un identifiant unique et son extension
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
+          
+               // 3 - Enregistrer l'image dans son répertoire ('articles_images')
+              try {
+                  $photo->move(
+                      $this->getParameter('images'),
+                      $newFilename
+                  );
+              } catch (FileException $e) {
+                
+              }
 
-                // 3 - Enregistrer l'image dans son répertoire ('articles_images')
-                try {
-                    $photo->move(
-                        $this->getParameter('properties_photos'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                }
+              // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
+              $property->setPhoto($newFilename);
+          }
 
-                // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
-                $property->setPhoto($newFilename);
+          $entityManager->persist($property);
+          $entityManager->flush();
 
+          return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
 
-
-                if ($form->get('isRent')->getData()) {
-                    $property->setIsRent(true);
-                    $property->setIsOnSale(false);
-                } else {
-                    $property->setIsRent(false);
-                    $property->setIsOnSale(true);
-                }
-
-
-                $entityManager->persist($property);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
-            }
-
-            return $this->render('property/new.html.twig', [
-                'property' => $property,
-                'form' => $form,
-            ]);
+            if ($form->get('isRent')->getData()) {
+            $property->setIsRent(true);
+            $property->setIsOnSale(false);
+        } else {
+            $property->setIsRent(false);
+            $property->setIsOnSale(true);
         }
+
+            $entityManager->persist($property);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('property/new.html.twig', [
+            'property' => $property,
+            'form' => $form,
+        ]);
     }
+
     #[Route('/{id}', name: 'app_property_show', methods: ['GET'])]
     public function show(Property $property): Response
     {
@@ -118,7 +122,7 @@ class PropertyController extends AbstractController
     #[Route('/{id}', name: 'app_property_delete', methods: ['POST'])]
     public function delete(Request $request, Property $property, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $property->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$property->getId(), $request->request->get('_token'))) {
             $entityManager->remove($property);
             $entityManager->flush();
         }
