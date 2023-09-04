@@ -1,96 +1,87 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Pro Immo Portail{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <link rel="icon" href={{asset('images/pro_immo_portail-favicon.png')}} type="image/x-icon">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Pro Immo Portail
+			{% endblock %}
+		</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+		<link rel="icon" href={{asset('images/pro_immo_portail-favicon.png')}} type="image/x-icon"> {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock %}
+		</head>
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
+		<body>
+			<nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Third navbar example">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="{{ path('app_home') }}"><img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/></a>
+					<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 
-    <body>
-    <nav
-      class="navbar navbar-expand-sm navbar-light bg-light"
-      aria-label="Third navbar example"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('app_home') }}"
-          ><img
-            src={{ asset('images/pro-immo-portail_logo.png') }}
-            alt="Logo"
-            class="img-fluid w-25"
-        /></a>
-        <button
-          class="navbar-toggler collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample03"
-          aria-controls="navbarsExample03"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+					<div class="navbar-collapse collapse" id="navbarsExample03">
 
-        <div class="navbar-collapse collapse" id="navbarsExample03" style="">
-          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ path('app_favorite') }}"
-                >Favoris</a
-              >
-            </li>
-            {# <li class="nav-item">
-              <a class="nav-link">Mes favoris</a>
-            </li> #}
-          </ul>
-
-          <div class=" text-end">
-            <ul class="nav nav-pills">
-          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          
-            <li class="nav-item"><a href={{ path('app_logout')}} class="nav-link active">Déconnexion</a></li>
-          
-        
-          {% else %}
-              <li class="nav-item"><a href={{ path('app_login')}} class="nav-link active px-2 mx-3">Connexion</a></li>
-                <li class="nav-item"><a href={{ path('app_register')}} class="nav-link active px-2">Inscription</a></li>
-          {% endif %}
-          </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-        {% block body %}{% endblock %}
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+							<div class="dropdown text-end">
+								<span class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+									Vous êtes connecté en tant que :
+								</span>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href={{ path('app_favorite')}} class="nav-link active">Mes favoris</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href={{ path('app_reset_password')}} class="nav-link active">Changer mon mot de passe</a>
+									</li>
+									<li class="nav-item">
+										<a class="dropdown-item" href={{ path('app_logout')}} class="nav-link active">Déconnexion</a>
+									</li>
+								</div>
+							{% else %}
+								<div class="text-end d-flex">
+									<ul class="nav nav-pills">
+										<li class="nav-item">
+											<a href={{ path('app_login')}} class="nav-link active px-2 mx-3">Connexion</a>
+										</li>
+										<li class="nav-item">
+											<a href={{ path('app_register')}} class="nav-link active px-2">Inscription</a>
+										</li>
+									</ul>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				</nav>
+				{% block body %}{% endblock %}
 
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <p class="col-md-4 mb-0 text-body-secondary">© 2023 HAVAIC Marija et PARSONNEAU Aurélie</p>
+				<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+					<p class="col-md-4 mb-0 text-body-secondary">© 2023 HAVAIC Marija et PARSONNEAU Aurélie</p>
 
-      <a href="{{ path('app_home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <img
-            src={{ asset('images/pro-immo-portail_logo.png') }}
-            alt="Logo"
-            class="img-fluid w-25"
-        />
-      </a>
+					<a href="{{ path('app_home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+						<img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/>
+					</a>
 
-      <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href={{ path('app_home')}} class="nav-link px-2 text-body-secondary">Accueil</a></li>
-        <li class="nav-item"><a href={{ path('app_cookies')}} class="nav-link px-2 text-body-secondary">Cookies</a></li>
-        <li class="nav-item"><a href={{ path('app_cond_utilisation')}} class="nav-link px-2 text-body-secondary">Conditions Générales d'Utilisation</a></li>
-        <li class="nav-item"><a href={{ path('app_donnees')}} class="nav-link px-2 text-body-secondary">Politique Générale de Protection des Données</a></li>
-        {# TODO on peut le mettre s'il y a du temps #}
-        {# <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Fonctionnement de notre site</a></li> #}
-      </ul>
-  </footer>
+					<ul class="nav col-md-4 justify-content-end">
+						<li class="nav-item">
+							<a href={{ path('app_home')}} class="nav-link px-2 text-body-secondary">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a href={{ path('app_cookies')}} class="nav-link px-2 text-body-secondary">Cookies</a>
+						</li>
+						<li class="nav-item">
+							<a href={{ path('app_cond_utilisation')}} class="nav-link px-2 text-body-secondary">Conditions Générales d'Utilisation</a>
+						</li>
+						<li class="nav-item">
+							<a href={{ path('app_donnees')}} class="nav-link px-2 text-body-secondary">Politique Générale de Protection des Données</a>
+						</li>
+						{# TODO on peut le mettre s'il y a du temps #}
+						{# <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Fonctionnement de notre site</a></li> #}
+					</ul>
+				</footer>
 
 
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-
-    </body>
-</html>
+				<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+			</body>
+		</body>
+	</html>
