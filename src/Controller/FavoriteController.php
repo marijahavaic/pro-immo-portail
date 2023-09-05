@@ -10,10 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FavoriteController extends AbstractController
-{  
+{
     #[Route('/favorite', name: 'app_favorite')]
     public function index(FavoriteRepository $favorites, PaginatorInterface $paginator, Request $request): Response
-    {   
+    {
         $user = $this->getUser();
         $favoriteProperties = $user->getFavorite()->getValues();
 
@@ -28,6 +28,6 @@ class FavoriteController extends AbstractController
             'favorites' => $favoriteProperties,
             'favorite' => $pagination,
             'user' => $user
-            ]);
+        ]);
     }
 }

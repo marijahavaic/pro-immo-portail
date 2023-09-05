@@ -79,28 +79,28 @@ class ContactFormType extends AbstractType
                 ]
             ])
 
-        ->add('Message', TextareaType::class, ['label' => 'Rédigez votre message',
-        'constraints' => [
-            new NotBlank([
-                'message' => 'Merci d\'écrire un message',
-            ]),
-            new Length([
-                'min' => 50,
-                'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
-                'max' => 2000,
-                'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
-            ]), 
-        ],])
-        ->add('Envoyer', SubmitType::class, [
-            'attr' => ['class' => 'btn btn-success rounded-pill']
-        ]);
-}
+            ->add('Message', TextareaType::class, [
+                'label' => 'Rédigez votre message',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci d\'écrire un message',
+                    ]),
+                    new Length([
+                        'min' => 50,
+                        'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
+                        'max' => 2000,
+                        'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
+                    ]),
+                ],
+            ])
+            ->add('Envoyer', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-success rounded-pill']
+            ]);
+    }
 
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            // Configure your form options here
-        ]);
+        $resolver->setDefaults([]);
     }
 }

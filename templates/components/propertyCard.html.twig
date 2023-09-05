@@ -1,0 +1,25 @@
+<div class="col-md-6 col-sm-12 pt-3">
+	<div class="card mb-3">
+		<a href={{ path('app_property_show', {'id': property.id} ) }} class="text-decoration-none text-primary-emphasis">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img class="img-fluid rounded-start" src={{asset(property.photo)}} alt='{{property.title}} image'>
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<strong class="d-inline-block mb-0 text-success-emphasis">Louer</strong>
+						<h3 class="mb-0">{{property.price}}€</h3>
+						<div class="mb-1 text-body-secondary">{{property.createdAt|date('d/m/Y')}}</div>
+						<p class="mb-auto">{{property.description|slice(0,45)}}...</p>
+						<div>
+							<strong>{{property.surface}}m²</strong>
+							<p>{{property.town}},
+								{{property.country}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+
+	</div>
+</div>

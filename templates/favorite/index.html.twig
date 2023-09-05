@@ -1,37 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FavoriteController!{% endblock %}
+{% block title %}Hello FavoriteController!
+{% endblock %}
 
 {% block body %}
+	<div class="property-list container row mx-auto p-0 mb-4">
+		<h2 class="text-center display-4 mb-4">Mes favoris</h2>
+		{# loop to display saved favorites #}
 
-<h1>Mes favoris :</h1>
-{# loop to display saved favorites #}
-<div class="container row m-auto">
-{% for favorite in favorites %}
-    {% for property in favorite.property %}
-        <div class="col-sm-6 pt-3">
-            <div class="d-flex gap-1 justify-content-center align-items-center">
-                
-                    <img class="w-auto" src={{asset("images/facade.jpg")}} alt="">
-                
-                <div class="">
-                    <h1>{{property.title}}</h1>
-                    <p>{{property.description}}</p>
-                    <p>{{property.price}}
-                        €</p>
-                    <p>{{property.surface}}
-                        m²</p>
-                    <p>{{property.town}}</p>
-                </div>
-            </div>
-            <div class="text-center pt-3">
-            <a href={{ path('app_property_show', {'id': property.id}) }}><button class="btn btn-primary ">Voir</button></a>
-            </div>
-        </div>
-        {% endfor %}
-    {% endfor %}
-    </div>
-    <div class="d-flex justify-content-center mt-3">
-	{{ knp_pagination_render(favorite) }}
-</div>
+
+		<div class="container row m-auto">
+			{% for favorite in favorites %}
+				{% for property in favorite.property %}
+					{{ include('components/propertyCard.html.twig') }}
+
+				{% endfor %}
+			{% endfor %}
+		</div>
+		<div class="d-flex justify-content-center mt-3">
+			{{ knp_pagination_render(favorite) }}
+		</div>
+	</div>
 {% endblock %}
