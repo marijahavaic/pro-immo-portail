@@ -19,31 +19,22 @@
 	</head>
 
 	<body>
-		{# Navbar #}
 		<nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Third navbar example">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="{{ path('app_home') }}"><img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/></a>
 				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
-				<div>
-					Avec Pro Immo Portail, vous trouverez
-					<span {{ stimulus_controller('symfony/ux-typed', { strings: [ 'la maison familiale idéale !', 'l\'appartement de vos rêves !', 'votre coup de coeur immobilier !', 'votre résidence secondaire !'], loop: true, showCursor: true, cursorChar: '|', })}}></span>
-				</div>
-
-				<div class="navbar-collapse collapse me-auto justify-content-end" id="navbarsExample03">
+				<div
+					class="navbar-collapse collapse me-auto justify-content-end" id="navbarsExample03">
+					{# Dropdown menu accessible to authenticated users only #}
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<div class="dropdown text-end">
 							<div class="mx-3">
 								<p>Vous êtes connecté.e en tant que:</p>
 								<strong class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{app.user.firstName}}</strong>
-
-								<ul class="dropdown-menu me-auto">
-									<li>
-										<a class="dropdown-item" href={{ path('app_favorite')}} class="nav-link active">Mes favoris</a>
-									</li>
-									{% if is_granted('ROLE_ADMIN') %}
+								{% if is_granted('ROLE_ADMIN') %}
+									<ul class="dropdown-menu me-auto">
 										<li>
 											<a class="dropdown-item" href={{ path('admin')}} class="nav-link active">Dashboard</a>
 										</li>
@@ -61,6 +52,7 @@
 									</li>
 								</div>
 							{% else %}
+								{# Menu for public access #}
 								<div class="text-end ">
 									<ul class="nav nav-pills me-auto">
 										<li class="nav-item">
@@ -73,18 +65,22 @@
 								</div>
 							{% endif %}
 						</div>
+
 					</div>
 				</div>
 			</nav>
-			{# Body #}
+
+			{# BODY #}
 			{% block body %}{% endblock %}
 
-			{# Footer #}
-			<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+			{# FOOTER #}
+			<footer class="d-flex flex-wrap justify-content-between align-items-center py-5 px-3 my-5 border-top">
 				<p class="col-md-4 mb-0 text-body-secondary">© 2023 HAVAIC Marija et PARSONNEAU Aurélie</p>
+
 				<a href="{{ path('app_home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
 					<img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/>
 				</a>
+
 				<ul class="nav col-md-4 justify-content-end">
 					<li class="nav-item">
 						<a href={{ path('app_home')}} class="nav-link px-2 text-body-secondary">Accueil</a>
@@ -100,9 +96,10 @@
 					</li>
 				</ul>
 			</footer>
-			{# Scripts Javascript #}
+
+			{# JS SCRIPTS #}
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 		</body>
 	</body>
-</html></body></html>
+</html>
