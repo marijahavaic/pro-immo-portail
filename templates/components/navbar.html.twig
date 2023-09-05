@@ -11,7 +11,10 @@
 				<div class="dropdown text-end">
 					<div class="mx-3">
 						<p>Vous êtes connecté.e en tant que:</p>
-						<strong class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{app.user.firstName}}</strong>
+						<strong class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fa-solid fa-user"></i>
+							{{app.user.firstName}}</strong>
+
 						<ul
 							class="dropdown-menu me-auto">
 							{# Show dashboard to ADMIN ONLY #}
