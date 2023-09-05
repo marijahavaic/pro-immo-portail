@@ -1,7 +1,8 @@
+
 .hero {
-  height: 40rem;
+    height: 40rem;
 }
 
 img {
-  object-fit: cover;
+    object-fit: cover;
 }
