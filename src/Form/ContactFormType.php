@@ -83,7 +83,7 @@ class ContactFormType extends AbstractType
                 'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
                 'max' => 2000,
                 'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
-            ]), //terminé
+            ]), 
         ],])
         ->add('Envoyer', SubmitType::class, [
             'attr' => ['class' => 'btn btn-success rounded-pill']

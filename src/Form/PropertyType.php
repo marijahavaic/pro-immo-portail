@@ -23,6 +23,7 @@ class PropertyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // form to add a property
         $builder
             ->add('Title', TextType::class, [
                 'required' => true,

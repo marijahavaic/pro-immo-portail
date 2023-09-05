@@ -21,11 +21,12 @@ class HomeController extends AbstractController
         $user = $this->getUser();
 
         $pagination = $paginator->paginate(
-            $query, // Requête contenant les données à paginer
-            $request->query->getInt('page', 1), // Numéro de la page en cours, 1 par défaut
-            10 // Nombre de résultats par page
+            $query, // Query containing the data to be paginated
+            $request->query->getInt('page', 1), // Current page number, default 1
+            10 // Number of results per page
         );
 
+        //Contact form creation
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
 
@@ -36,7 +37,7 @@ class HomeController extends AbstractController
             $tel = $form->get('Telephone')->getData();
             $message = $form->get('Message')->getData();
 
-            // On envoie l'email avec les données du formulaire
+            // Send email with form data
             $contactMessage = (new Email())
                 ->from($email)
                 ->to('hello@pip.fr')

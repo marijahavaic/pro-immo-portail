@@ -5,6 +5,7 @@
 {% block body %}
 
 <h1>Mes favoris :</h1>
+{# loop to display saved favorites #}
 <div class="container row m-auto">
 {% for favorite in favorites %}
     {% for property in favorite.property %}
