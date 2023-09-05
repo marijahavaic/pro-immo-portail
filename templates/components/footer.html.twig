@@ -1,0 +1,23 @@
+{# FOOTER #}
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 pt-3 border-top">
+	<p class="col-md-4 mb-0 text-body-secondary">© 2023 HAVAIC Marija et PARSONNEAU Aurélie</p>
+
+	<a href="{{ path('app_home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+		<img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/>
+	</a>
+
+	<ul class="nav col-md-4 justify-content-end">
+		<li class="nav-item">
+			<a href={{ path('app_home')}} class="nav-link px-2 text-body-secondary">Accueil</a>
+		</li>
+		<li class="nav-item">
+			<a href={{ path('app_cookies')}} class="nav-link px-2 text-body-secondary">Cookies</a>
+		</li>
+		<li class="nav-item">
+			<a href={{ path('app_cond_utilisation')}} class="nav-link px-2 text-body-secondary">Conditions Générales d'Utilisation</a>
+		</li>
+		<li class="nav-item">
+			<a href={{ path('app_donnees')}} class="nav-link px-2 text-body-secondary">Politique Générale de Protection des Données</a>
+		</li>
+	</ul>
+</footer>

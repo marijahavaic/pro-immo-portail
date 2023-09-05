@@ -31,8 +31,7 @@
 			<br>{{ property.Description }}</p>
 
 		<hr class="col-3 col-md-2 mb-5">
-	{# TODO Map #}
-		{# TODO Contact form #}
+		<div class="d-flex flex-column justify-content-end m-auto pb-5 ps-5 ms-5"></div>
 	</div>
 	{% if is_granted('ROLE_PRO') %}
 
@@ -49,5 +48,4 @@
 
 
 	{# {{ include('property/_delete_form.html.twig') }} #}
-</div>
-{% endblock %}
+</div>{% endblock %}
