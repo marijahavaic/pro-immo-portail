@@ -10,7 +10,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 #[Route('/property')]
 class PropertyController extends AbstractController
@@ -24,24 +26,57 @@ class PropertyController extends AbstractController
     }
 
     #[Route('/new', name: 'app_property_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $property = new Property();
-        
+
         $property->setCreatedAt(new DateTime());
 
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('isRent')->getData()) {
-            $property->setIsRent(true);
-            $property->setIsOnSale(false);
-        } else {
-            $property->setIsRent(false);
-            $property->setIsOnSale(true);
-        }
 
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $photo = $form->get('Photo')->getData();
+
+            if ($photo) {
+
+                // 2 - Modifier le nom de l'image (nom unique)
+                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent sans espace)
+                $safeFilename = $slugger->slug($originalFilename);
+
+                //Reconstruit le nom de l'image avec un identifiant unique et son extension
+                $newFilename = '/images/properties/' .  $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
+
+
+                // 3 - Enregistrer l'image dans son répertoire ('articles_images')
+                try {
+                    $photo->move(
+                        $this->getParameter('properties_images'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
+                $property->setPhoto($newFilename);
+            }
+
+            $entityManager->persist($property);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+
+            if ($form->get('isRent')->getData()) {
+                $property->setIsRent(true);
+                $property->setIsOnSale(false);
+            } else {
+                $property->setIsRent(false);
+                $property->setIsOnSale(true);
+            }
 
             $entityManager->persist($property);
             $entityManager->flush();
@@ -64,13 +99,39 @@ class PropertyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_property_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Property $property, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Property $property, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $property->setUpdatedAt(new DateTime());
+
+            $photo = $form->get('Photo')->getData();
+
+            if ($photo) {
+
+                // 2 - Modifier le nom de l'image (nom unique)
+                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent sans espace)
+                $safeFilename = $slugger->slug($originalFilename);
+
+                //Reconstruit le nom de l'image avec un identifiant unique et son extension
+                $newFilename = '/images/properties/' .  $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
+
+
+                // 3 - Enregistrer l'image dans son répertoire ('articles_images')
+                try {
+                    $photo->move(
+                        $this->getParameter('properties_images'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
+                $property->setPhoto($newFilename);
+            }
 
             $entityManager->flush();
 
@@ -86,7 +147,7 @@ class PropertyController extends AbstractController
     #[Route('/{id}', name: 'app_property_delete', methods: ['POST'])]
     public function delete(Request $request, Property $property, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$property->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $property->getId(), $request->request->get('_token'))) {
             $entityManager->remove($property);
             $entityManager->flush();
         }

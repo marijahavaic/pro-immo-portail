@@ -14,7 +14,9 @@
 			<h2>{{ property.Title }}</h2>
 		</a>
 	</header>
-	<div{{property.Town}}({{property.PostalCode}})</h3 <div class="container row m-auto"> <img class="w-auto pb-3" src={{asset("images/facade.jpg")}} alt=""> <div class="d-flex flex-column"> <h3>>
+
+	{# TODO photo gallery #}
+	<div{{property.Town}}({{property.PostalCode}})</h3 <div class="container row m-auto"> <img class="w-auto pb-3" src={{asset(property.photo)}} alt=""> <div class="d-flex flex-column"> <h3>>
 		<p>Prix:
 			<span>{{ property.Price }}€</span>
 		</p>
@@ -32,14 +34,19 @@
 	{# TODO Map #}
 		{# TODO Contact form #}
 	</div>
+	{% if is_granted('ROLE_PRO') %}
+
+		<a href="{{ path('app_property_edit', {'id': property.id}) }}">
+			<button class="btn btn-primary mb-2">Editer mon annonce</button>
+
+		</a>
+	{% endif %}
+
 
 	<a href="{{ path('app_home') }}">
-		<button class="btn btn-primary mb-2">Retour à l'accueil</button>
+		<button class="btn btn-primary ">Retour à l'accueil</button>
 	</a>
 
-	<a href="{{ path('app_property_edit', {'id': property.id}) }}">
-		<button class="btn btn-primary">Editer mon annonce</button>
-	</a>
 
 	{# {{ include('property/_delete_form.html.twig') }} #}
 </div>
