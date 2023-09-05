@@ -24,7 +24,12 @@ img {
     display: block;
 }
 
-.stimulus {
+.property-list {
+    margin-top: 10rem;
+}
+
+.agency {
     background-color: #f8f9fa;
     height: 20rem;
+    margin: 10rem 0;
 }
