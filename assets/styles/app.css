@@ -20,6 +20,7 @@ img {
 .stimulus {
     height: 10rem;
 }
+<<<<<<< HEAD
 
 .propertyCard:hover {
     transform: scale(0.95);
@@ -35,4 +36,8 @@ img {
 
 .cursor-pointer {
     cursor: pointer;
+=======
+#map {
+    height: 180px;
+>>>>>>> Add LeafletAPI
 }

@@ -2,85 +2,89 @@
 
 {% block body %}
 
-</div>
-{# HERO SECTION #}
-<div>
-	<div class="stimulus d-flex flex-column justify-content-center">
-		{{ include('components/stimulus.html.twig') }}
-	</div>
-	<div class="hero px-0 mt-5">
-		<img class="w-100 h-100 d-flex mx-auto" src="https://images.unsplash.com/photo-1628592102751-ba83b0314276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2597&q=80" alt="hero image">
-	</div>
-</div>
-
-
-{# LIST OF PROPERTIES SECTION #}
-<div class="property-list container row mx-auto p-0 mb-4">
-	<h2 class="text-center display-4 mb-4">Les biens disponibles</h2>
-
-	<div class="container row mx-auto p-0">
-		{% for property in properties %}
-			{{ include('components/propertyCard.html.twig') }}
-		{% endfor %}
-	</div>
-	<div class="d-flex justify-content-center mt-3">
-		{{ knp_pagination_render(properties) }}
-	</div>
-</div>
-
-
-{# AGENCY DIV #}
-
-<div class="agency row">
-	<div class="col-lg-6 col-md-12 pt-3">
-		<img src={{asset("images/stimulus.svg")}} class="w-75 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
-
-	</div>
-	<div class="col-md-6 col-sm-12 pt-5">
-		<h3 class="text-center pt-5">Bienvenue chez Pro Immo Portail !</h3>
-
-
-		<p class="m-auto px-5 pt-3 text-center">Votre passerelle vers le marché immobilier moderne.
-			<br>
-			Nous sommes une agence
-
-			<strong>innovante</strong>
-			dédiée à simplifier la recherche de biens immobiliers,
-			<br>que ce soit pour la location ou l'achat.
-		</p>
-
-
-	</div>
-</div>
-{# AGENCY DIV #}
-
-<div class="agency row">
-	<div class="col-md-6 col-sm-12 pt-5">
-		<h3 class="text-center pt-5">A propos de nous</h3>
-
-		<p class="m-auto px-5 pt-3 text-center">Votre passerelle vers le marché immobilier moderne.
-			<br>
-			Nous sommes une agence
-
-			<strong>innovante</strong>
-			dédiée à simplifier la recherche de biens immobiliers,
-			<br>que ce soit pour la location ou l'achat.
-		</p>
-
-	</div>
-	<div class="col-lg-6 col-md-12 pt-3">
-		<img src={{asset("images/park.svg")}} class="w-50 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
-	</div>
-</div>
-
-
-<div class="row">
-	<div class="col-lg-6 col-md-12 pt-3">
-
-
-		<div class="d-flex flex-column justify-content-end m-auto pb-5 ps-5 ms-5">
-			{{ include('components/contactus.html.twig') }}
+	{# HERO SECTION #}
+	<div>
+		<div class="stimulus d-flex flex-column justify-content-center">
+			{{ include('components/stimulus.html.twig') }}
 		</div>
-		<div class="col-lg-6 col-md-12 pt-3"></div>
+		<div class="hero px-0 mt-5">
+			<img class="w-100 h-100 d-flex mx-auto" src="https://images.unsplash.com/photo-1628592102751-ba83b0314276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2597&q=80" alt="hero image">
+		</div>
+	</div>
+
+
+	{# LIST OF PROPERTIES SECTION #}
+	<div class="property-list container row mx-auto p-0 mb-4">
+		<h2 class="text-center display-4 mb-4">Les biens disponibles</h2>
+
+		<div class="container row mx-auto p-0">
+			{% for property in properties %}
+				{{ include('components/propertyCard.html.twig') }}
+			{% endfor %}
+		</div>
+		<div class="d-flex justify-content-center mt-3">
+			{{ knp_pagination_render(properties) }}
+		</div>
+	</div>
+
+
+	{# AGENCY DIV #}
+
+	<div class="agency row">
+		<div class="col-lg-6 col-md-12 pt-3">
+			<img src={{asset("images/stimulus.svg")}} class="w-75 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
+
+		</div>
+		<div class="col-md-6 col-sm-12 pt-5">
+			<h3 class="text-center pt-5">Bienvenue chez Pro Immo Portail !</h3>
+
+
+			<p class="m-auto px-5 pt-3 text-center">Votre passerelle vers le marché immobilier moderne.
+				<br>
+				Nous sommes une agence
+
+				<strong>innovante</strong>
+				dédiée à simplifier la recherche de biens immobiliers,
+				<br>que ce soit pour la location ou l'achat.
+			</p>
+
+
+		</div>
+	</div>
+	{# AGENCY DIV #}
+
+	<div class="agency row">
+		<div class="col-md-6 col-sm-12 pt-5">
+			<h3 class="text-center pt-5">A propos de nous</h3>
+
+			<p class="m-auto px-5 pt-3 text-center">Votre passerelle vers le marché immobilier moderne.
+				<br>
+				Nous sommes une agence
+
+				<strong>innovante</strong>
+				dédiée à simplifier la recherche de biens immobiliers,
+				<br>que ce soit pour la location ou l'achat.
+			</p>
+
+		</div>
+		<div class="col-lg-6 col-md-12 pt-3">
+			<img src={{asset("images/park.svg")}} class="w-50 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-lg-6 col-md-12 pt-3">
+
+
+			<div class="d-flex flex-column justify-content-end m-auto pb-5 ps-5 ms-5">
+				{{ include('components/contactus.html.twig') }}
+			</div>
+			<div class="col-lg-6 col-md-12 pt-3"></div>
+		</div>
+		<div class="col-lg-6 col-md-12 pt-3">
+			<div id="map"></div>
+		</div>
+
 	</div>
 {% endblock %}
