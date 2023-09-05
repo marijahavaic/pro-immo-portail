@@ -1,8 +1,30 @@
-
 .hero {
     height: 40rem;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background: linear-gradient(
+        to bottom,
+        rgba(233, 227, 227, 0.096),
+        rgba(0, 0, 0, 0.336)
+    );
 }
 
 img {
     object-fit: cover;
+    display: block;
+}
+
+.stimulus {
+    background-color: #f8f9fa;
+    height: 20rem;
 }
