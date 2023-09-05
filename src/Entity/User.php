@@ -37,9 +37,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $lastname = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Role::class)]
-    private Collection $idRole;
-
     #[ORM\ManyToMany(targetEntity: Favorite::class, mappedBy: 'user')]
     private Collection $favorite;
 
@@ -48,7 +45,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->idRole = new ArrayCollection();
         $this->favorite = new ArrayCollection();
     }
 
@@ -142,36 +138,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): static
     {
         $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Role>
-     */
-    public function getIdRole(): Collection
-    {
-        return $this->idRole;
-    }
-
-    public function addIdRole(Role $idRole): static
-    {
-        if (!$this->idRole->contains($idRole)) {
-            $this->idRole->add($idRole);
-            $idRole->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdRole(Role $idRole): static
-    {
-        if ($this->idRole->removeElement($idRole)) {
-            // set the owning side to null (unless already changed)
-            if ($idRole->getUser() === $this) {
-                $idRole->setUser(null);
-            }
-        }
 
         return $this;
     }
