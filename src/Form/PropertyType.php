@@ -61,9 +61,9 @@ class PropertyType extends AbstractType
                 'required' => true,
                 'choices' => [
                     'Choisir...' => null,
-                    'Maison' => 'house',
-                    'Appartement' => 'appartment',
-                    'Château' => 'castle'
+                    'Maison' => 'Maison',
+                    'Appartement' => 'Appartement',
+                    'Château' => 'Château'
                 ],
                 'constraints' => [
                     new NotNull([
