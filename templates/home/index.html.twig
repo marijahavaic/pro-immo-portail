@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	<div class="hero">
+		<img class="w-75 h-100 d-flex m-auto" src={{asset("images/hero.jpg")}} alt="">
+	</div>
 
-	<img class="w-50 h-25 d-flex m-auto" src={{asset("images/banniere.jpg")}} alt="">
-
+	<h1 class="text-center">Les biens disponibles à la vente et à la location:</h1>
 	<div class="container row m-auto">
 		{% for property in properties %}
 			<div class="col-md-6 pt-3">
@@ -40,18 +42,25 @@
 	</div>
 
 	<div class="container row m-auto">
-		<h2 class="text-center pt-5">A propos de nous :</h2>
+		<div class=" col-md-6">
+			<div class="h-100 p-5 text-bg-dark rounded-3 map"></div>
+		</div>
+		<div class="col-md-6">
+			<div class="h-100 p-5 bg-body-tertiary border rounded-3">
+				<h2 class="text-center pt-5">A propos de nous :</h2>
+				<p class="m-auto pt-2">Bienvenue chez Pro Immo Portail ! Votre passerelle vers le marché immobilier moderne. Nous sommes une agence
+					<strong>innovante</strong>
+					dédiée à simplifier la recherche de biens immobiliers, que ce soit pour la location ou l'achat. Notre plateforme en ligne offre une expérience sans pareille en mettant en relation des particuliers et des professionnels à travers des annonces de qualité. Notre mission est de rendre le processus de recherche et de transaction immobilière aussi transparent et efficace que possible.</p>
 
-		<p class="m-auto pt-2">Bienvenue chez Pro Immo Portail ! Votre passerelle vers le marché immobilier moderne. Nous sommes une agence
-			<strong>innovante</strong>
-			dédiée à simplifier la recherche de biens immobiliers, que ce soit pour la location ou l'achat. Notre plateforme en ligne offre une expérience sans pareille en mettant en relation des particuliers et des professionnels à travers des annonces de qualité. Notre mission est de rendre le processus de recherche et de transaction immobilière aussi transparent et efficace que possible.</p>
+				<p class="pt-3">Ici vous trouverez des
+					<strong>annonces de qualité</strong>
+					grâce à notre séléction rigoureuse de professionnels de l'immobilier.</p>
 
-		<p class="pt-3">Ici vous trouverez des
-			<strong>annonces de qualité</strong>
-			grâce à notre séléction rigoureuse de professionnels de l'immobilier.</p>
-
-		<p>
-			<strong>Découvrez aujourd'hui la nouvelle façon de trouver votre chez-vous avec Pro Immo Portail !</strong>
-		</p>
+				<p>
+					<strong>Découvrez aujourd'hui la nouvelle façon de trouver votre chez-vous avec Pro Immo Portail !</strong>
+				</p>
+			</div>
+		</div>
 	</div>
+
 {% endblock %}
