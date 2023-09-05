@@ -1,9 +1,9 @@
 .hero {
-    height: 40rem;
+    height: 30rem;
     position: relative;
 }
 
-.hero::after {
+/* .hero::after {
     content: "";
     position: absolute;
     left: 0;
@@ -17,19 +17,19 @@
         rgba(233, 227, 227, 0.096),
         rgba(0, 0, 0, 0.336)
     );
-}
+} */
 
 img {
     object-fit: cover;
-    display: block;
 }
 
 .property-list {
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .agency {
     background-color: #f8f9fa;
-    height: 20rem;
-    margin: 10rem 0;
+    height: 18rem;
+    /* margin: 10rem 0 20rem 0; */
+    margin-bottom: 13rem;
 }
