@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(PropertyRepository $properties, PaginatorInterface $paginator, Request $request, MailerInterface $mailer): Response
     {
-        $query = $properties->findAll();
+        $query = $properties->findBy([], ['createdAt' => 'DESC']);
         $user = $this->getUser();
 
         $pagination = $paginator->paginate(
@@ -68,4 +68,4 @@ class HomeController extends AbstractController
             'result' => $result,
         ]);
     }
-    }
+}
