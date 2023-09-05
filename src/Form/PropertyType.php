@@ -35,7 +35,7 @@ class PropertyType extends AbstractType
                         'message' => 'Entrez un titre',
                     ]),
                 ],
-        ])
+            ])
             ->add('Description', TextareaType::class, [
                 'required' => true,
                 'attr' => [
@@ -83,7 +83,7 @@ class PropertyType extends AbstractType
                     ]),
                 ],
                 'label' => 'Prix',
-                'attr' => ['class' => 'form-control', ]
+                'attr' => ['class' => 'form-control',]
             ])
             ->add('Surface', NumberType::class, [
                 'required' => true,
@@ -108,7 +108,7 @@ class PropertyType extends AbstractType
                         'message' => 'Veuillez entrer une adresse',
                     ]),
                 ],
-        ])
+            ])
             ->add('Town', TextType::class, [
                 'required' => true,
                 'label' => 'Ville',
@@ -120,7 +120,7 @@ class PropertyType extends AbstractType
                         'message' => 'Veuillez entrer une ville',
                     ]),
                 ],
-        ])
+            ])
             ->add('PostalCode', NumberType::class, [
                 'required' => true,
                 'label' => 'Code postal',
@@ -133,23 +133,22 @@ class PropertyType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Country',CountryType::class, [
+            ->add('Country', CountryType::class, [
                 'required' => true,
                 'label' => 'Pays',
                 'attr' => [
                     'class' => 'mb-3 form-control'
                 ],
-        ])
+            ])
             ->add('Photo', FileType::class, array(
-                    'required' => false,
-                    'mapped' => false,
-                    'required' => false,
-                ))
+                'required' => false,
+                'mapped' => false,
+                'required' => false,
+            ))
             ->add('isRent', CheckboxType::class, [
-            'label' => 'Vous souhaitez mettre votre bien en location ?',
-            'required' => false,
-        ])
-        ;
+                'label' => 'Vous souhaitez mettre votre bien en location ?',
+                'required' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

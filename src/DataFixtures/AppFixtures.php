@@ -16,14 +16,41 @@ class AppFixtures extends Fixture
         // Création d'un générateur de données Faker en français
         $faker = Factory::create('fr_FR');
 
-        // Création d'un utilisateur de test
+        // Création d'un utilisateur de test ADMIN
         $user = new User();
         $user->setEmail('hello@pip.fr')
             ->setFirstName('Marija')
             ->setLastName('Dupont')
             ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
             ->setRoles(["ROLE_ADMIN"])
-            // ->setIsVerified(true)
+            ->setIsVerified(true)
+        ;
+
+        
+        // Enregistrement de l'utilisateur en base de données
+        $manager->persist($user);
+        
+        // Création d'un utilisateur de test USER
+        $user = new User();
+        $user->setEmail('user@pip.fr')
+            ->setFirstName('Jon')
+            ->setLastName('Doe')
+            ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
+            ->setRoles(["ROLE_USER"])
+            ->setIsVerified(true)
+        ;
+
+        // Enregistrement de l'utilisateur en base de données
+        $manager->persist($user);
+
+        // Création d'un utilisateur de test PRO
+        $user = new User();
+        $user->setEmail('pro@pip.fr')
+            ->setFirstName('Jane')
+            ->setLastName('Doe')
+            ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
+            ->setRoles(["ROLE_PRO"])
+            ->setIsVerified(true)
         ;
 
         // Enregistrement de l'utilisateur en base de données
