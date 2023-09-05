@@ -38,9 +38,13 @@
 		<button class="btn btn-primary mb-2">Retour à l'accueil</button>
 	</a>
 
-	<a href="{{ path('app_property_edit', {'id': property.id}) }}">
-		<button class="btn btn-primary">Editer mon annonce</button>
-	</a>
+
+	{% if is_granted('ROLE_PRO') %}
+
+		<a href="{{ path('app_property_edit', {'id': property.id}) }}">
+			<button class="btn btn-primary">Editer mon annonce</button>
+		</a>
+	{% endif %}
 
 	{# {{ include('property/_delete_form.html.twig') }} #}
 </div>{% endblock %}
