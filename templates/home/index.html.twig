@@ -63,4 +63,38 @@
 		</div>
 	</div>
 
+
+<div>
+<h4 class="text-center pt-4 pb-2">Contactez-nous :</h4>
+	<div class="d-flex justify-content-center m-auto pb-5">
+		{{ form_start(form) }}
+
+		<div class="mb-3">
+			<label for="contact_Nom">{{ form_label(form.Nom) }}</label>
+			{{ form_widget(form.Nom, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.Nom) }}
+		</div>
+		<div class="mb-3">
+			<label for="contact_Penom">{{ form_label(form.Prenom) }}</label>
+			{{ form_widget(form.Prenom, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.Prenom) }}
+		</div>
+		<div class="mb-3">
+			<label for="contact_Email">{{ form_label(form.Email) }}</label>
+			{{ form_widget(form.Email, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.Email) }}
+		</div>
+		<div class="mb-3">
+			<label for="contact_Telephone">{{ form_label(form.Telephone) }}</label>
+			{{ form_widget(form.Telephone, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.Telephone) }}
+		</div>
+		<div class="mb-3">
+			<label for="contact_Message">{{ form_label(form.Message) }}</label>
+			{{ form_widget(form.Message, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.Message) }}
+		</div>
+		{{ form_end(form) }}
+	</div>
+</div>
 {% endblock %}
