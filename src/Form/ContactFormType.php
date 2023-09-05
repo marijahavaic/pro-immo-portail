@@ -94,7 +94,7 @@ class ContactFormType extends AbstractType
                 ],
             ])
             ->add('Envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-success rounded-pill']
+                'attr' => ['class' => 'btn btn-primary rounded-pill']
             ]);
     }
 
