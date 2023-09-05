@@ -43,16 +43,16 @@ class PropertyController extends AbstractController
 
             if ($photo) {
 
-                // 2 - Modifier le nom de l'image (nom unique)
+                // Modify photo name (unique name)
                 $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-                // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent sans espace)
+                // Transform photo name into URL slug (lowercase, no accent, no space)
                 $safeFilename = $slugger->slug($originalFilename);
 
-                //Reconstruit le nom de l'image avec un identifiant unique et son extension
+                //Reconstructs photo name with unique identifier and extension
                 $newFilename = '/images/properties/' .  $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
 
 
-                // 3 - Enregistrer l'image dans son répertoire ('articles_images')
+                // Save the image in its directory ('properties_images')
                 try {
                     $photo->move(
                         $this->getParameter('properties_images'),
@@ -61,7 +61,7 @@ class PropertyController extends AbstractController
                 } catch (FileException $e) {
                 }
 
-                // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
+                // Add photo name to current object (setPhoto)
                 $property->setPhoto($newFilename);
             }
 
@@ -70,6 +70,7 @@ class PropertyController extends AbstractController
 
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
 
+            // If the "isRent" box is not checked, the "isOnSale" box is automatically checked.
             if ($form->get('isRent')->getData()) {
                 $property->setIsRent(true);
                 $property->setIsOnSale(false);
@@ -89,7 +90,7 @@ class PropertyController extends AbstractController
             'form' => $form,
         ]);
     }
-
+// See the card property
     #[Route('/{id}', name: 'app_property_show', methods: ['GET'])]
     public function show(Property $property): Response
     {
@@ -97,7 +98,7 @@ class PropertyController extends AbstractController
             'property' => $property,
         ]);
     }
-
+// Edit the property
     #[Route('/{id}/edit', name: 'app_property_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Property $property, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
@@ -111,16 +112,16 @@ class PropertyController extends AbstractController
 
             if ($photo) {
 
-                // 2 - Modifier le nom de l'image (nom unique)
+                // Modify photo name (unique name)
                 $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-                // Transforme le nom de l'image en slug pour l'URL (minuscule, sans accent sans espace)
+                // Transform photo name into URL slug (lowercase, no accent, no space)
                 $safeFilename = $slugger->slug($originalFilename);
 
-                //Reconstruit le nom de l'image avec un identifiant unique et son extension
+                //Reconstructs photo name with unique identifier and extension
                 $newFilename = '/images/properties/' .  $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
 
 
-                // 3 - Enregistrer l'image dans son répertoire ('articles_images')
+                // Save the image in its directory ('properties_images')
                 try {
                     $photo->move(
                         $this->getParameter('properties_images'),
@@ -129,7 +130,7 @@ class PropertyController extends AbstractController
                 } catch (FileException $e) {
                 }
 
-                // 4 - Ajouter le nom de l'image à l'objet en cours (setImage)
+                // Add photo name to current object (setPhoto)
                 $property->setPhoto($newFilename);
             }
 
@@ -143,7 +144,7 @@ class PropertyController extends AbstractController
             'form' => $form,
         ]);
     }
-
+// Delete the property
     #[Route('/{id}', name: 'app_property_delete', methods: ['POST'])]
     public function delete(Request $request, Property $property, EntityManagerInterface $entityManager): Response
     {

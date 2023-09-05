@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Créer un compte{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -24,7 +24,7 @@
 
             {# <form action="">
             <input class="me-2" type="checkbox">Mémoriser mon identifiant et mon mot de passe lors de mes prochaines visites sur ce site</form> #}
-            <button type="submit" class="d-flex flex-column m-auto mb-3 btn btn-primary">Register</button>
+            <button type="submit" class="d-flex flex-column m-auto mb-3 btn btn-primary">Créer mon compte</button>
         {{ form_end(registrationForm) }}
     </div>
 

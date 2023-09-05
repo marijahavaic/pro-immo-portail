@@ -13,10 +13,10 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // Création d'un générateur de données Faker en français
+        // Creating a Faker data generator in French
         $faker = Factory::create('fr_FR');
 
-        // Création d'un utilisateur de test ADMIN
+        // Creation of a test user ADMIN
         $user = new User();
         $user->setEmail('hello@pip.fr')
             ->setFirstName('Marija')
@@ -27,10 +27,10 @@ class AppFixtures extends Fixture
         ;
 
         
-        // Enregistrement de l'utilisateur en base de données
+        // User registration in database
         $manager->persist($user);
         
-        // Création d'un utilisateur de test USER
+        // Creating a test user USER
         $user = new User();
         $user->setEmail('user@pip.fr')
             ->setFirstName('Jon')
@@ -40,10 +40,10 @@ class AppFixtures extends Fixture
             ->setIsVerified(true)
         ;
 
-        // Enregistrement de l'utilisateur en base de données
+        // User registration in database
         $manager->persist($user);
 
-        // Création d'un utilisateur de test PRO
+        // Creating a test user PRO
         $user = new User();
         $user->setEmail('pro@pip.fr')
             ->setFirstName('Jane')
@@ -53,10 +53,10 @@ class AppFixtures extends Fixture
             ->setIsVerified(true)
         ;
 
-        // Enregistrement de l'utilisateur en base de données
+        // User registration in database
         $manager->persist($user);
 
-        // Boucle pour créer 20 annonces de propriétés
+        // Loop to create 20 property listings
         for ($i = 0; $i < 20; $i++) {
             $property = new Property();
             $property->setTitle($faker->word(6))

@@ -46,17 +46,17 @@
 					<td>{{ property.createdAt ? property.createdAt|date('Y-m-d') : '' }}</td>
 					<td>{{ property.updatedAt ? property.updatedAt|date('Y-m-d') : '' }}</td>
 					<td>
-						<a href="{{ path('app_property_show', {'id': property.id}) }}">show</a>
-						<a href="{{ path('app_property_edit', {'id': property.id}) }}">edit</a>
+						<a href="{{ path('app_property_show', {'id': property.id}) }}">Voir</a>
+						<a href="{{ path('app_property_edit', {'id': property.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="16">no records found</td>
+					<td colspan="16">Pas d'annonce enregistrée</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_property_new') }}">Create new</a>
+	<a href="{{ path('app_property_new') }}">Créer une nouvelle annonce</a>
 {% endblock %}

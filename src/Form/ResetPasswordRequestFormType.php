@@ -12,6 +12,7 @@ class ResetPasswordRequestFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // form to reset password
         $builder
             ->add('email', EmailType::class, [
                 'attr' => ['autocomplete' => 'email', 'placeholder' => 'Entrez votre adresse email', 'class' => 'mb-3 form-control'],
