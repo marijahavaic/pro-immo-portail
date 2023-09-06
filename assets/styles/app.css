@@ -1,17 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,700;1,300&display=swap");
 
-.font-merriweather {
-    font-family: "Merriweather", serif, open-sans;
-    font-weight: 400;
-}
-
-.font-mulish {
-    font-family: "Mulish", sans-serif, open-sans;
-    font-weight: 300;
-}
-
-p {
+p,
+small,
+a,
+button,
+li {
     font-family: "Mulish", sans-serif, open-sans;
     font-weight: 300;
 }
@@ -24,6 +18,11 @@ h5,
 h6 {
     font-family: "Merriweather", serif, open-sans;
     font-weight: 400;
+}
+
+.bold-mulish {
+    font-family: "Mulish", sans-serif, open-sans;
+    font-weight: 700;
 }
 
 .hero {
@@ -59,6 +58,21 @@ img {
 
 .purple {
     color: #5e17eb;
+}
+
+.btn-purple {
+    background-color: #5e17eb;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.btn-purple:hover {
+    color: #fff;
+    transform: scale(0.95);
+    -webkit-transform: scale(0.95);
+    -moz-transform: scale(0.95);
+    -ms-transform: scale(0.95);
+    -o-transform: scale(0.95);
 }
 
 .cursor-pointer {
