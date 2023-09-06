@@ -65,7 +65,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('isPro', CheckboxType::class, [
-                'label' => 'Vous souhaitez annoncer votre propriété ?',
+                'label' => 'Vous êtes un professionnel de l\'immobilier ?',
                 'required' => false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
