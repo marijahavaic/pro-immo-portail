@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
     {
         $this->emailVerifier = $emailVerifier;
     }
-// New user
+    // New user
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -41,19 +41,18 @@ class RegistrationController extends AbstractController
                 )
             );
 
-        if ($form->get('isPro')->getData()) {
-            $user->setRoles(['ROLE_USER', 'ROLE_PRO']);
-        } else {
-            $user->setRoles(['ROLE_USER']);
-        }
-
-        $entityManager->persist($user);
-        $entityManager->flush();
+            if ($form->get('isPro')->getData()) {
+                $user->setRoles(['ROLE_USER', 'ROLE_PRO']);
+            } else {
+                $user->setRoles(['ROLE_USER']);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
                 (new TemplatedEmail())
                     ->from(new Address('hello@pip.fr', 'Pro-Immo-Portail'))
                     ->to($user->getEmail())
