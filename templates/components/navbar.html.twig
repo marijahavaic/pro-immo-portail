@@ -6,7 +6,8 @@
 		<a class="navbar-brand" href="{{ path('app_home') }}"><img src={{ asset('images/pro-immo-portail_logo.png') }} alt="Logo" class="img-fluid w-25"/></a>
 		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-			<div class="mx-3 dropdown ">
+			<div class="mx-3 dropdown d-flex flex-column justify-contetnt-end align-items-end">
+
 				<p>Vous êtes connecté.e en tant que:</p>
 				<a class="d-block link-body-emphasis text-decoration-none dropdown-toggle cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
 
