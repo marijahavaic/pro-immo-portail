@@ -39,9 +39,6 @@ img {
 
 .agency {
     background-color: #f8f9fa;
-    height: 18rem;
-    /* margin: 10rem 0 20rem 0; */
-    margin-bottom: 13rem;
 }
 
 .stimulus {
@@ -77,4 +74,11 @@ img {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+@media (min-width: 1350px) {
+    .agency {
+        height: 18rem;
+        margin-bottom: 13rem;
+    }
 }

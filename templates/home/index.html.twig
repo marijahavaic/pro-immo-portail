@@ -14,7 +14,6 @@
 	</div>
 
 
-
 	{# LIST OF PROPERTIES SECTION #}
 	<div class="property-list container row mx-auto p-0 mb-4">
 		<h2 class="text-center display-4 mb-4">Les biens disponibles</h2>
@@ -34,11 +33,13 @@
 	{# AGENCY DIV #}
 
 	<div class="agency row">
-		<div class="col-lg-6 col-md-12 pt-3">
+		<div class="col-sm-12 col-lg-6 pt-3">
+
 			<img src={{asset("images/stimulus.svg")}} class="w-75 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
 
 		</div>
-		<div class="col-md-6 col-sm-12 pt-5">
+		<div class="col-sm-12 col-lg-6 pt-5">
+
 			<h3 class="text-center pt-5">Bienvenue chez Pro Immo Portail !</h3>
 
 
@@ -56,8 +57,10 @@
 	</div>
 	{# AGENCY DIV #}
 
-	<div class="agency row">
-		<div class="col-md-6 col-sm-12 pt-5">
+	<div class="agency row mb-5">
+
+		<div class="col-sm-12 col-lg-6 pt-5">
+
 			<h3 class="text-center pt-5">A propos de nous</h3>
 
 			<p class="m-auto px-5 pt-3 text-center">Votre passerelle vers le marché immobilier moderne.
@@ -76,22 +79,15 @@
 	</div>
 
 
-
-	<div class="row">
+	<div class="row row-2">
 		<div class="col-lg-6 col-md-12 pt-3">
+			<div class="d-flex flex-column justify-content-end m-auto pb-5 mx-5 px-5">
 
-
-			<div class="d-flex flex-column justify-content-end m-auto pb-5 ps-5 ms-5">
 				{{ include('components/contactus.html.twig') }}
 			</div>
-			<div class="col-lg-6 col-md-12 pt-3"></div>
-
 		</div>
 		<div class="col-lg-6 col-md-12 pt-3 d-flex align-items-center justify-content-center">
-
-			<div id="map" class="m-0"><img class="w-100 h-75 mx-auto" src={{asset("images/map.webp")}} alt="map"></div>
-
-
+			<div id="map" class="m-0 p-0"><img class="w-100 h-75 mx-auto" src={{asset("images/map.webp")}} alt="map"></div>
 		</div>
 
 	</div>
