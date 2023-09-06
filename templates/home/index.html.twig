@@ -8,7 +8,8 @@
 			{{ include('components/stimulus.html.twig') }}
 		</div>
 		<div class="hero px-0 mt-5">
-			<img class="w-100 h-100 d-flex mx-auto" src="https://images.unsplash.com/photo-1628592102751-ba83b0314276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2597&q=80" alt="hero image">
+			<img class="w-100 h-100 d-flex mx-auto" src={{asset("images/hero.avif")}} alt="hero image">
+
 		</div>
 	</div>
 
@@ -68,7 +69,7 @@
 
 		</div>
 		<div class="col-lg-6 col-md-12 pt-3">
-			<img src={{asset("images/park.svg")}} class="w-50 h-100 d-flex rounded mx-auto image-fluid" alt="stimulus image">
+			<img src={{asset("images/park.svg")}} class="w-50 h-100 d-flex mx-auto image-fluid" alt="stimulus image">
 		</div>
 	</div>
 
@@ -82,8 +83,11 @@
 			</div>
 			<div class="col-lg-6 col-md-12 pt-3"></div>
 		</div>
-		<div class="col-lg-6 col-md-12 pt-3">
-			<div id="map"></div>
+		<div class="col-lg-6 col-md-12 pt-3 d-flex align-items-center justify-content-center">
+
+			<div id="map" class="m-0"><img class="w-100 h-75 mx-auto" src={{asset("images/map.webp")}} alt="map"></div>
+
+
 		</div>
 
 	</div>
