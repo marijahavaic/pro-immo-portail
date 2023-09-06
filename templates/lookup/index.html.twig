@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LookupController!{% endblock %}
+
+{% block body %}
+<div>
+<form>
+<input type="search" name="search" placeholder="Rechercher...">
+<button type="submit">Rechercher</button>
+</form>
+</div>
+{% for property in properties %}
+				{{ include('components/propertyCard.html.twig') }}
+                {% else %}
+                <p>Pas de résultat trouvé</p>
+			{% endfor %}
+{% endblock %}
