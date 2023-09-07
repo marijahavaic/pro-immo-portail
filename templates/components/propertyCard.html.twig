@@ -10,9 +10,10 @@
 					<div class="card-body">
 						<strong class="d-inline-block mb-0 text-success-emphasis">
 							{% if property.isRent == true%}
-								<span class="text-warning">Location</span>
+								<span class="text-primary">Location</span>
+
 							{% else %}
-								<span class="text-success">Vente</span>
+								<span class="text-danger">Vente</span>
 							{% endif %}
 						</strong>
 						<h3 class="mb-0 purple">{{property.price}}€</h3>
@@ -27,6 +28,5 @@
 				</div>
 			</div>
 		</a>
-
 	</div>
 </div>
