@@ -23,13 +23,12 @@ class AppFixtures extends Fixture
             ->setLastName('Dupont')
             ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
             ->setRoles(["ROLE_ADMIN"])
-            ->setIsVerified(true)
-        ;
+            ->setIsVerified(true);
 
-        
+
         // User registration in database
         $manager->persist($user);
-        
+
         // Creating a test user USER
         $user = new User();
         $user->setEmail('user@pip.fr')
@@ -37,8 +36,7 @@ class AppFixtures extends Fixture
             ->setLastName('Doe')
             ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
             ->setRoles(["ROLE_USER"])
-            ->setIsVerified(true)
-        ;
+            ->setIsVerified(true);
 
         // User registration in database
         $manager->persist($user);
@@ -50,8 +48,7 @@ class AppFixtures extends Fixture
             ->setLastName('Doe')
             ->setPassword('$2y$13$4UbZtgjJ2J0JSmY45CZs4uGbUbckq1R.N64JltRbz7JTVpuo3YJzi') // mdp = admin
             ->setRoles(["ROLE_PRO"])
-            ->setIsVerified(true)
-        ;
+            ->setIsVerified(true);
 
         // User registration in database
         $manager->persist($user);
@@ -74,11 +71,11 @@ class AppFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-7 months'))
                 ->setUpdatedAt($faker->dateTimeBetween('-7 months'));
 
-                $favorite = new Favorite();
-                $favorite->addUser($user)
+            $favorite = new Favorite();
+            $favorite->addUser($user)
                 ->addProperty($property);
 
-                $manager->persist($favorite);
+            $manager->persist($favorite);
 
             $manager->persist($property);
         }
