@@ -5,9 +5,10 @@ p,
 small,
 a,
 button,
-li {
-    font-family: "Mulish", sans-serif, open-sans;
-    font-weight: 300;
+li,
+.btn {
+  font-family: "Mulish", sans-serif, open-sans;
+  font-weight: 300;
 }
 
 h1,
@@ -16,69 +17,75 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Merriweather", serif, open-sans;
-    font-weight: 400;
+  font-family: "Merriweather", serif, open-sans;
+  font-weight: 400;
 }
 
 .bold-mulish {
-    font-family: "Mulish", sans-serif, open-sans;
-    font-weight: 700;
+  font-family: "Mulish", sans-serif, open-sans;
+  font-weight: 700;
 }
 
 .hero {
-    height: 30rem;
+  height: 30rem;
 }
 
 img {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .property-list {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 .agency {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 .stimulus {
-    height: 10rem;
+  height: 10rem;
 }
 
 .propertyCard:hover {
-    transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -moz-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    -o-transform: scale(0.95);
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -o-transform: scale(0.95);
 }
 
 .purple {
-    color: #5e17eb;
+  color: #5e17eb;
 }
 
 .btn-purple {
-    background-color: #5e17eb;
-    color: #fff;
-    font-size: 0.9rem;
+  background-color: #5e17eb;
+  color: #fff;
+  font-size: 0.9rem;
 }
 
 .btn-purple:hover {
-    color: #fff;
-    transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -moz-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    -o-transform: scale(0.95);
+  background-color: #5e17eb;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.btn-purple:hover {
+  color: #fff;
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -o-transform: scale(0.95);
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @media (min-width: 1350px) {
-    .agency {
-        height: 18rem;
-        margin-bottom: 13rem;
-    }
+  .agency {
+    height: 18rem;
+    margin-bottom: 13rem;
+  }
 }

@@ -47,14 +47,14 @@
 		{% if is_granted('ROLE_PRO') %}
 
 			<a href="{{ path('app_property_edit', {'id': property.id}) }}">
-				<button class="btn btn-primary mb-2">Editer mon annonce</button>
+				<button class="btn btn-purple mb-2">Editer mon annonce</button>
 
 			</a>
 		{% endif %}
 
 
 		<a href="{{ path('app_home') }}">
-			<button class="btn btn-primary ">Retour à l'accueil</button>
+			<button class="btn btn-purple ">Retour à l'accueil</button>
 		</a>
 
 	</div>
