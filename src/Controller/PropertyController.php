@@ -90,7 +90,7 @@ class PropertyController extends AbstractController
             'form' => $form,
         ]);
     }
-// See the card property
+    // See the card property
     #[Route('/{id}', name: 'app_property_show', methods: ['GET'])]
     public function show(Property $property): Response
     {
@@ -98,7 +98,7 @@ class PropertyController extends AbstractController
             'property' => $property,
         ]);
     }
-// Edit the property
+    // Edit the property
     #[Route('/{id}/edit', name: 'app_property_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Property $property, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
@@ -144,7 +144,7 @@ class PropertyController extends AbstractController
             'form' => $form,
         ]);
     }
-// Delete the property
+    // Delete the property
     #[Route('/{id}', name: 'app_property_delete', methods: ['POST'])]
     public function delete(Request $request, Property $property, EntityManagerInterface $entityManager): Response
     {
@@ -153,6 +153,6 @@ class PropertyController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_property_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }
